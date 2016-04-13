@@ -1,20 +1,10 @@
 import pyglet
 import pymunk
-import scipy.optimize, numpy
 from sys import argv
 
 from game_elements.window import Game
 from AI_controller import Learner
 
-NUM_FEATURES = 5
-
-def single_round(parameters):
-    #space = pymunk.Space()
-    game = Game(space = space, run_pyglet = False, load = None)
-    while True:
-        game.update(1/60.0)
-        if game.learner.current_iteration == 0:
-            return game.learner.last_performance*-1
 
 if __name__ == '__main__':
         space = pymunk.Space()
@@ -41,10 +31,5 @@ if __name__ == '__main__':
                     print "\nArquivo de pesos deve ser informado."
                     exit()
                 pyglet.app.run()
-            elif argv[1] == "minimize":
-                params = numpy.random.normal(0, 1, 3*NUM_FEATURES)
-                print params
-                scipy.optimize.minimize(single_round, params, method = 'Powell')
-                print params
             else:
                 print "Parametro invalido."
