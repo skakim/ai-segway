@@ -63,8 +63,7 @@ class Game(pyglet.window.Window):
         self.learner = AI_controller.Learner(self, load)
 
         pyglet.clock.schedule(self.update)
-
-        if run_pyglet:
+        if not(run_pyglet):
             filename =  datetime.datetime.fromtimestamp(time.time()).strftime('%Y%m%d%H%M%S')
             print "Gerando arquivo para listagem das performances (%s.txt)" % filename
             self.performances_file = open(("./performance/%s.txt" % filename), "w+")
@@ -130,7 +129,7 @@ class Game(pyglet.window.Window):
     def reset(self, performance):
         self.lone_wheel.reset()
         self.smiley.reset()
-        if self.run_pyglet:
+        if not(self.run_pyglet):
             self.smiley.randomize(self.lone_wheel.randomize())
             self.performances_file.write(str(performance) + "\n")
         self.epoch += 1
