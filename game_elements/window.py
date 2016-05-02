@@ -11,7 +11,7 @@ from .sprites import Cloud, Floor, GameObject, Rod
 from . import constants
 
 G_VECTOR = (0.0, -900.0)
-SKY_COLOR = (65.0/255, 0.0/255, 0.0/255)
+SKY_COLOR = (0.0/255, 0.0/255, 0.0/255)
 
 
 def signal_handler(signal, frame):
@@ -106,11 +106,11 @@ class Game(pyglet.window.Window):
     def on_draw(self):
         self.clear()
         self.lone_wheel.rotation = self.lone_wheel.x - constants.W_WIDTH/2
-        pyglet.text.Label('Death Count: %.2d' % self.epoch,
-                          font_name='OptimusPrinceps',
-                          font_size=120,
+        pyglet.text.Label('GAME OVER %.2d' % self.epoch,
+                          font_name='TR2N',
+                          font_size=100,
                           x=self.width//2, y=self.height//2,
-                          anchor_x='center', anchor_y='center').draw()
+                          anchor_x='center', anchor_y='center', color=(231, 0, 0, 255)).draw()
         if self.visualize:
             self.batch_draw.draw()
             for i in range(0, int(math.ceil(constants.W_WIDTH / self.floor.img.width))):
